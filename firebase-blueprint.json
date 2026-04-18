@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "A dry cleaning order",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string", "description": "Customer's full name" },
+        "phoneNumber": { "type": "string", "description": "Customer's contact number" },
+        "garments": { "type": "array", "description": "List of garments in the order" },
+        "totalAmount": { "type": "number", "description": "Total bill amount" },
+        "status": { "type": "string", "enum": ["RECEIVED", "PROCESSING", "READY", "DELIVERED"] },
+        "createdAt": { "type": "number", "description": "Timestamp when order was created" },
+        "estimatedDeliveryDate": { "type": "number", "description": "Timestamp for estimated delivery" }
+      },
+      "required": ["customerName", "phoneNumber", "garments", "totalAmount", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Collection of dry cleaning orders"
+    }
+  }
+}
